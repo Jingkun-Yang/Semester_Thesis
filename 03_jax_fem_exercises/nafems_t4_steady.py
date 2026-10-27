@@ -25,7 +25,7 @@ class nafems_t4_steady(Problem):
 ele_type = 'QUAD4'
 cell_type = get_meshio_cell_type(ele_type)
 Lx, Ly = 0.6, 1.
-meshio_mesh = rectangle_mesh(Nx=48, Ny=80, domain_x=Lx, domain_y=Ly)
+meshio_mesh = rectangle_mesh(Nx=60, Ny=100, domain_x=Lx, domain_y=Ly)
 mesh = Mesh(meshio_mesh.points, meshio_mesh.cells_dict[cell_type])
 
 def left(point):
