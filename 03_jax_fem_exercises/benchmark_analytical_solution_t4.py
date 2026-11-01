@@ -67,6 +67,8 @@ y_E = 0.2
 T_E = analytical_temperature(x_E, y_E, N_modes)
 print(T_E)
 
+# build up the mesh and calculate the temperature at each point
+
 Nx = 60
 Ny = 100
 
