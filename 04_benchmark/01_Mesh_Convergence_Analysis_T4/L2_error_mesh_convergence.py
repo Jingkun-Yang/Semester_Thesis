@@ -131,10 +131,10 @@ for Nx, Ny in Nx_Ny:
 
     T_gaussian_point = fe.convert_from_dof_to_quad(T)[..., 0]
     quad_points = problem.physical_quad_points
-    points_coordinats = np.asarray(quad_points).reshape(-1, 2)
+    points_coordinates = np.asarray(quad_points).reshape(-1, 2)
     T_analytical = np.array([
         analytical_temperature(x, y, N_modes)
-        for x, y in points_coordinats
+        for x, y in points_coordinates
         ])
     T_analytical_quad = T_analytical.reshape(quad_points.shape[:2])
     T_numerical_quad = np.asarray(T_gaussian_point)

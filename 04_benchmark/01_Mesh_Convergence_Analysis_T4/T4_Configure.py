@@ -12,3 +12,4 @@ Nx_Ny = [[6, 10],
          [192, 320]]
 
 N_modes = 1000
+ele_type = 'QUAD4'
