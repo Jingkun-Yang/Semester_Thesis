@@ -6,3 +6,5 @@ __pycache__/
 *.vtu
 *.vtk
 *.log
+# Ignore Python exercise folder
+/python_exercises/
