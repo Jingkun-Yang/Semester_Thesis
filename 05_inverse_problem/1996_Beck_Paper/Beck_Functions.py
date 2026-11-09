@@ -60,11 +60,11 @@ def bottom(point):
 def top(point):
     return jnp.isclose(point[1], cfg.Width, atol=1e-5)
 
-def get_sensor_temperature(sensor_point, mesh):
+def get_sensor_temperature_index(sensor_point, mesh):
     points = np.asarray(mesh.points)
     point_index = np.where(
-        jnp.all(
-            jnp.isclose(points, sensor_point, atol=1e-5, rtol=0),
+        np.all(
+            np.isclose(points, sensor_point, atol=1e-5, rtol=0),
             axis=1
         )
     )[0]
