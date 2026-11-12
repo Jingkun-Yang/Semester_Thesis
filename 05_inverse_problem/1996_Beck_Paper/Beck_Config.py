@@ -15,6 +15,7 @@ sensor1_point = np.array([L1, 0.])
 sensor2_point = np.array([L1 + L2, 0.])
 
 Width = 0.01e-3
+
 Nx1 = 2
 Nx2 = 20
 Nx3 = 40
@@ -22,6 +23,8 @@ Nx3 = 40
 T_t0 = 31. # initial temperature
 
 q = 7800. # heat flux starts at t = 1.9, ends at t = 21.9
+
+q_guess = 4000.
 
 dt = 0.1
 t_end = 40.
