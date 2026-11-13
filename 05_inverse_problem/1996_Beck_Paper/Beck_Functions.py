@@ -39,6 +39,7 @@ class Beck_1996(Problem):
         T_old_quad = self.fes[0].convert_from_dof_to_quad(T_old)
         
         x_quad = self.physical_quad_points[..., 0]
+        
         k_quad = jnp.where(
             x_quad < cfg.L1,
             cfg.k1,
@@ -50,12 +51,20 @@ class Beck_1996(Problem):
         )        
         self.internal_vars = [k_quad, T_old_quad]
 
-    def set_params(self, q_current):
+    def set_params(self, params):
+        T_old, q_current = params
+
+        # Update the previous temperature
+        self.set_old_temperature(T_old)
+
+        # Update the heat-flux boundary condition
         num_faces = len(self.boundary_inds_list[0])
         num_quads = self.selected_face_shape_vals[0].shape[1]
+
         q_surface = q_current * jnp.ones(
             (num_faces, num_quads)
         )
+
         self.internal_vars_surfaces = [[q_surface]]
 
 def left(point):
