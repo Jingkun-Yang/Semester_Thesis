@@ -1,6 +1,6 @@
 import jax
 jax.config.update("jax_enable_x64", True)
-jax.config.update("jax_platform_name", "gpu")
+jax.config.update("jax_platform_name", "cpu")
 
 import jax.numpy as jnp
 import os
@@ -30,16 +30,20 @@ def main():
     T_sensor2 = []
 
     num_steps = int(round(cfg.t_end / cfg.dt))
-
+    step_heat = int(round(cfg.t_heat / cfg.dt))
+    step_cool = int(round(cfg.t_cool_down / cfg.dt))
     for step in range(1, num_steps + 1):
-        
-        problem.set_old_temperature(T_old)
-        q = fnc.heat_flux(step)
-        problem.set_params(q)
+        if step_heat <= step < step_cool:
+            q_now = cfg.q
+        else:
+            q_now = jnp.zeros_like(cfg.q)
+        q_array = jnp.array(q_now)
+        params = (T_old, q_array)
+        problem.set_params(params)
 
         print(f"\nStep = {step}")
         print(f"Time = {step * cfg.dt:.2f} s")
-        print(f"Heat flux = {q}")
+        print(f"Heat flux = {q_now}")
 
         print(f"T_old min = {jnp.min(T_old)}")
         print(f"T_old max = {jnp.max(T_old)}")

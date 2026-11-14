@@ -7,7 +7,7 @@ import os
 import numpy as np
 
 from jax_fem.problem import Problem # inherit the class Problem
-from jax_fem.solver import solver, ad_wrapper
+from jax_fem.solver import ad_wrapper
 from jax_fem.utils import save_sol
 from jax_fem.generate_mesh import get_meshio_cell_type, Mesh, box_mesh
 from scipy.optimize import minimize
